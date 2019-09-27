@@ -6,7 +6,7 @@ stage('Git CheckOut') {
 git url: 'https://github.com/skmohanbe/New-Today.git'
 }
 
-def project_path = "atmosphere/spring-boot-samples/spring-boot-sample-atmosphere"
+def project_path = "devops-sg/atmosphere/spring-boot-samples/spring-boot-sample-atmosphere"
 dir(project_path) {
 
 stage('Clean Old Packages') {
