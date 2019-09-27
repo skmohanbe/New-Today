@@ -1,0 +1,405 @@
+    1  ls
+    2  cd devops-sg-25092019/
+    3  ls
+    4  cd atmosphere/spring-boot-samples/spring-boot-sample-atmosphere/
+    5  ls
+    6  cat pom.xml 
+    7  ls
+    8  cat sonar-project.properties 
+    9  ls
+   10  cd src/
+   11  ls
+   12  cd main/
+   13  ls
+   14  cd java/
+   15  ls
+   16  cd sample/
+   17  ls
+   18  cd atmosphere/
+   19  ls
+   20  cat SampleAtmosphereApplication.java 
+   21  ls
+   22  cd ../../../
+   23  ls
+   24  cd ../../
+   25  ls
+   26  cd 
+   27  ls
+   28  cd devops-sg-25092019/
+   29  ls
+   30  mvn clean package
+   31  ls
+   32  cd 
+   33  ls
+   34  cd .jenkins/workspace/atmosphere/atmosphere/spring-boot-samples/spring-boot-sample-atmosphere/target/
+   35  ls
+   36  java -jar spring-boot-sample-atmosphere-1.4.0.BUILD-SNAPSHOT.jar 
+   37  cd 
+   38  ls
+   39  cd devops-sg-25092019/
+   40  ls
+   41  mkdir jenkins
+   42  vim jenkins/stage-pipeline
+   43  git add . 
+   44  git commit -m "jenkins/stage-pipeline"; git push origin master 
+   45  ssh 10.128.0.6
+   46  apt-get update ; apt-get install default-jdk -y 
+   47  wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war 
+   48  java -jar jenkins.war --httpPort=30000 & 
+   49  ls
+   50  git clone https://github.com/amitvashist7/devops-sg-25092019.git
+   51  git clone https://github.com/amitvashist7/devops-mind-21092019.git
+   52  ls
+   53  cp -rf devops-mind-21092019/atmosphere  devops-sg-25092019/
+   54  rm -rf devops-sg-25092019/atmosphere/jenkins-demo-pipelines
+   55  rm -rf devops-sg-25092019/atmosphere/spring-boot-samples/spring-boot-sample-atmosphere/docker-compose.yaml 
+   56  rm -rf devops-sg-25092019/atmosphere/spring-boot-samples/spring-boot-sample-atmosphere/Dockerfile 
+   57  ls
+   58  cd devops-sg-25092019/
+   59  ls
+   60  git add . ; git commit -m "Atmosphere" ; git push orgin master 
+   61  git add . ; git commit -m "Atmosphere" ; git push origin master 
+   62  ls
+   63  cd 
+   64  ls
+   65  cd .jenkins/
+   66  ls
+   67  cd workspace/
+   68  ls
+   69  cd Test-job-5/
+   70  ls
+   71  apt-get install maven -y 
+   72  ls
+   73  mvn --version
+   74  mvn --help
+   75  ls
+   76  apt-get install     apt-transport-https     ca-certificates     curl     gnupg-agent     software-properties-common -y 
+   77  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+   78  add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   79     $(lsb_release -cs) \
+   80     stable"
+   81  apt-get update
+   82  apt-get install docker-ce docker-ce-cli containerd.io
+   83  docker version 
+   84  docker images 
+   85  docker ps
+   86  docker ps -a 
+   87  docker run busybox echo "Welcome to the world of Docker.docker ps -a !"
+   88  docker images 
+   89  docker run busybox echo "Welcome to the world of Docker"
+   90  history 
+   91  ls
+   92  docker images 
+   93  docker ps 
+   94  docker ps -a
+   95  docker images 
+   96  docker pull ubuntu:16.04
+   97  docker images 
+   98  docker search centos
+   99  docker ps 
+  100  docker ps -a 
+  101  docker run ubuntu:16.04  echo "Hello World"
+  102  docker ps 
+  103  docker run -it ubuntu:16.04  
+  104  docker ps 
+  105  docker ps -a
+  106  docker ps 
+  107  docker attach dafe5c21d7e2        
+  108  docker ps 
+  109  docker attach dafe5c21d7e2        
+  110  docker ps 
+  111  docker ps -a 
+  112  docker start dafe5c21d7e2        
+  113  docker ps 
+  114  docker attach dafe5c21d7e2        
+  115  docker ps 
+  116  docker ps -a
+  117  docker ps -aq
+  118  docker rm $(docker ps -aq)
+  119  docker ps -a
+  120  history 
+  121  ls
+  122  docker sp 
+  123  docker ps 
+  124  docker run -it busybox 
+  125  docker run -itd busybox 
+  126  docker ps 
+  127  docker run -itd ubuntu:16.04 
+  128  docker ps 
+  129  docker run -itd ubuntu:16.04 /bin/sh
+  130  docker ps 
+  131  docker stop c58c596b7eec 
+  132  docker kill c8f386a08654        
+  133  docker ps 
+  134  docker ps -a
+  135  docker ps 
+  136  docker kill  $(docker ps -q)
+  137  docker ps 
+  138  docker ps -a
+  139  docker run -itd ubuntu:16.04 /bin/sh
+  140  docker ps -a
+  141  docker ps -qa
+  142  docker rm $(docker ps -qa)
+  143  docker ps 
+  144  docker ps -a
+  145  docker run -itd ubuntu:16.04 /bin/sh
+  146  docker run -itd ubuntu:16.04 /bin/bash
+  147  ls
+  148  docker ps 
+  149  docker kill 7843d75f73f5        
+  150  docker ps 
+  151  docker ps -q
+  152  docker ps -qa
+  153  docker kill $(docker ps -qa)
+  154  docker rm $(docker ps -qa)
+  155  docker images 
+  156  docker rmi busybox             
+  157  docker images 
+  158  history 
+  159  docker run -it ubuntu
+  160  docker ps 
+  161  curl 6be86a0f1b10        
+  162  curl localhost
+  163  docker run -itd ubuntu
+  164  docker ps 
+  165  docker inspect 6be86a0f1b10        
+  166  curl 172.17.0.2
+  167  docker attach 6be86a0f1b10        
+  168  curl 172.17.0.2
+  169  curl 172.17.0.2/info.html
+  170  docker attach 6be86a0f1b10        
+  171  curl 172.17.0.2/info.html
+  172  curl  www.google.co,
+  173  curl  www.google.com
+  174  curl 172.17.0.2/info.html
+  175  history 
+  176  docker attach 6be86a0f1b10        
+  177  docker ps 
+  178  docker images 
+  179  docker commit -p -m "My First Apache Image" 6be86a0f1b10     myapache-image:v1
+  180  docker ps 
+  181  curl 172.17.0.2/info.html
+  182  docker images
+  183  docker run -itd myapache-image:v1
+  184  docker ps 
+  185  docker inspect 943c819b5070        
+  186  curl  172.17.0.6
+  187  curl  172.17.0.6/info.html
+  188  curl 172.17.0.2/info.html
+  189  history 
+  190  ld
+  191  ls
+  192  cd devops-sg-25092019/
+  193  ls
+  194  mkdir docker
+  195  cd docker/
+  196  ls
+  197  mkdir apache
+  198  ls
+  199  cd apache/
+  200  ls
+  201  vim Dockerfile
+  202  ls
+  203  cd ../../
+  204  ls
+  205  git add . ; git commit -m "DockerFile"
+  206  ls
+  207  cd docker/apache/
+  208  ls
+  209  docker images 
+  210  docker build -t myapache-file:v1 .
+  211  docker images 
+  212  docker run -d myapache-file:v1 
+  213  docker ps 
+  214  docker inspect 65f13a91b520        
+  215  curl 172.17.0.7
+  216  curl 172.17.0.7/info.html
+  217  ls
+  218  vim info.html
+  219  ls
+  220  vim Dockerfile 
+  221  docker build -t myapache-file:v2 .
+  222  docker images 
+  223  docker run -d myapache-file:v2
+  224  curl 172.17.0.8/info.html
+  225  curl 172.17.0.7/info.html
+  226  cd ../../
+  227  ls
+  228  git add . ; git commit -m "DockerFile Update"; git push origin master  
+  229  history 
+  230  ls
+  231  history  > Day2_History.txt
+  232  git add . ; git commit -m "Day2 History file"; git push origin master  
+  233  cat docker/apache/Dockerfile 
+  234  docker images 
+  235  ls
+  236  cd docker/
+  237  ls
+  238  mkdir python-app
+  239  ls
+  240  cd python-app/
+  241  ls
+  242  vim Dockerfile
+  243  ls
+  244  vi app.py
+  245  ls
+  246  vi requirements.txt
+  247  ls
+  248  cat Dockerfile 
+  249  ls
+  250  cat Dockerfile 
+  251  docker build -t my-python:v1
+  252  docker build -t my-python:v1 .
+  253  ls
+  254  docker images 
+  255  ls
+  256  cd 
+  257  ls
+  258  cd devops-sg-25092019/
+  259  ls
+  260  docker ps 
+  261  curl 172.17.0.7/info.html
+  262  curl 172.17.0.8 
+  263  curl 172.17.0.8/info.html
+  264  ifconfig 
+  265  net ns 
+  266  ip netns 
+  267  ln -s /var/run/docker/netns /var/run/
+  268  ip netns 
+  269  docker kill $(docker ps -aq)
+  270  docker rm $(docker ps -aq)
+  271  ip netns 
+  272  ip addr 
+  273  docker images 
+  274  docker run -d myapache-file:v1
+  275  ip addr 
+  276  ip netns 
+  277  ip -n 70f0dde000ae link 
+  278  ip -n 70f0dde000ae addr 
+  279  docker run -d myapache-file:v1
+  280  ip netns 
+  281  ip -n 99b8e164988f  addr 
+  282* 
+  283  ip -n 99b8e164988f  addr 
+  284  curl 172.17.0.2
+  285  curl  localhost
+  286  docker run -d -P myapache-file:v1
+  287  docker ps 
+  288  docker run -d -p 8080:80  myapache-file:v1
+  289  docker ps 
+  290  iptables -L
+  291  docker ps 
+  292  curl localhost
+  293  curl localhost:8080
+  294  ip addr 
+  295  curl 10.128.0.5:8080
+  296  ls
+  297  cd docker/apache/
+  298  ls
+  299  vim Dockerfile 
+  300  docker images 
+  301  docker build -t myapache-file:v3 .
+  302  docker run -d -P  myapache-file:v3 
+  303  docker ps 
+  304  iptables -L
+  305  netstat -tulnp 
+  306  history 
+  307  '
+
+
+
+  308  docker network ls 
+  309  docker network inspect b8c2f61576f8        
+  310  docker run -d -P --name test01 myapache-file:v3 
+  311  docker ps 
+  312  docker network inspect b8c2f61576f8        
+  313  docker kill $(docker ps -aq)
+  314  docker network inspect b8c2f61576f8        
+  315  docker run -d -P --name test01 myapache-file:v3 
+  316  docker ps -a 
+  317  docker run -d -P --name test02 myapache-file:v3 
+  318  docker network inspect b8c2f61576f8        
+  319  docker network create --help
+  320  docker network create -d bridge --subnet=172.28.0.0/16 --ip-range=172.28.5.0/24 --gateway=172.28.5.254 mybr0
+  321  docker network ls
+  322  docker network inspect mybr0               
+  323  docker run -d -P --name test03 --network mybr0  myapache-file:v3 
+  324  docker ps 
+  325  docker network inspect mybr0               
+  326  curl 172.28.5.0
+  327  docker run -d -P --name test04 --network mybr0  myapache-file:v3 
+  328  docker network inspect mybr0               
+  329  history 
+  330  docker volume ls 
+  331  docker ps -a 
+  332  docker container ls 
+  333  docker container ls -a
+  334  docker volume ls -a
+  335  docker volume ls 
+  336  docker volume create myvol
+  337  docker volume ls 
+  338  docker volume inspect myvol
+  339  docker run -it --name voltest --mount source=myvol,target=/myvoldir ubuntu:16.04
+  340  docker ps 
+  341  docker volume inspect myvol
+  342  cd /var/lib/docker/volumes/myvol/_data/
+  343  ls
+  344  cd SG/
+  345  ls
+  346  cat now 
+  347  ls
+  348  cd ..
+  349  ls
+  350  cd ..
+  351  docker ps -a
+  352  docker rm voltest
+  353  docker volume ls
+  354  docker run -it --name voltest01 --mount source=myvol,target=/app ubuntu:16.04
+  355  docker run -it --name voltest02 --mount source=myvol,target=/app ubuntu:16.04
+  356  ls
+  357  cd ..
+  358  ls
+  359  cd 
+  360  ls
+  361  docker kill $(docker ps -aq)
+  362  docker rm $(docker ps -aq)
+  363  docker run --name datacont -it -v /var/log -v /var/www -v /root/devops-sg-25092019/docker/apache:/var/www/html/ ubuntu:16.04 /bin/bash 
+  364  docker ps 
+  365  docker volume ls 
+  366  docker images 
+  367  docker run -d --volume-from datacont -P myapache-file:v3
+  368  docker run -d --volumes-from datacont -P myapache-file:v3
+  369  docker ps 
+  370  docker ps -a 
+  371  docker log ab94746ec9ae        
+  372  docker logs ab94746ec9ae        
+  373  docker run -d --volumes-from datacont ubuntu
+  374  ls
+  375  docker run -it --volumes-from datacont ubuntu
+  376  docker run --name datacont01 -it -v /root/devops-sg-25092019/docker/apache:/var/www/html/:ro ubuntu:16.04 /bin/bash 
+  377  docker run -d --volume-from datacont01 -P myapache-file:v3
+  378  docker run -d --volumes-from datacont01 -P myapache-file:v3
+  379  docker ps 
+  380  curl localhost:32781
+  381  ls
+  382  docker ps 
+  383  docker inspect bad36b0a9145        
+  384  curl 172.17.0.5
+  385  curl 172.17.0.5/info.html
+  386  docker run -d --volumes-from datacont01 -P myapache-file:v3
+  387  curl 172.17.0.5/info.html
+  388  curl 172.17.0.6/info.html
+  389  cd /root/devops-sg-25092019/docker/
+  390  ls
+  391  cd apache/
+  392  ls
+  393  vim info.html 
+  394  curl 172.17.0.6/info.html
+  395  curl 172.17.0.5/info.html
+  396  history 
+  397  ls
+  398  cd ..
+  399  ls
+  400  cd ..
+  401  ls
+  402  history > Day2_History.txt 
