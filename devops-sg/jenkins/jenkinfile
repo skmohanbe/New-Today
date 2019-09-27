@@ -3,7 +3,7 @@ node ('master') {
 notify('Started')
     
 stage('Git CheckOut') {    
-git url: 'https://github.com/amitvashist7/devops-sg-25092019.git'
+git url: 'https://github.com/skmohanbe/New-Today.git'
 }
 
 def project_path = "atmosphere/spring-boot-samples/spring-boot-sample-atmosphere"
@@ -47,7 +47,7 @@ sh label: 'Docker', script: 'ansible-playbook -i ../../../ansible/demo03/invento
 
 def notify(status){ 
     emailext(
-        to: "amitvashist7@gmail.com",
+        to: "skmohan03@gmail.com",
         subject: "${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
         body: """<p>${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
         <p>Check Console output at <a href='${env.BUILD_URL}'> ${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""",
