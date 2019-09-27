@@ -1,0 +1,26 @@
+Installation
+
+Jenkins
+===========
+wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+install recent jdk
+java -jar jenkins.war --httpPort=9090
+
+
+devops-sg-25092019 download the file to server from github 
+
+https://github.com/amitvashist7/devops-sg-25092019.git
+
+
+
+docker
+======
+
+install docker
+install docker-compose
+
+
+Ansible
+=========
+install ansible 
+install python
