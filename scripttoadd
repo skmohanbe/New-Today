@@ -1,0 +1,122 @@
+#!/bin/bash
+dat=`date "+%d-%b-%Y-%H-%M-%S"`
+wdir="/var/yp/maps"
+
+unset username groupname uid gid shell dirname comments ACTION
+set_variable()
+{
+  local varname=$1
+  shift
+  if [ -z "${!varname}" ]; then eval "$varname=\"$@\""
+  else
+    echo "Error: $varname already set";usage
+  fi
+}
+
+usage()
+{
+  echo "Usage: $0 [-u usrename ] [-g groupname] [-i userid] [-t grpid] [-s shell] [-d dir] [-c comments] -A apply"
+  exit 2
+}
+
+
+
+while getopts 'u:g:s:d:c:i:t:b:r:A:?h' X
+do
+  case $X in
+    u) username=$OPTARG ;;
+    g) groupname=$OPTARG ;;
+    d) dirname=$OPTARG ;;
+    s) shell=$OPTARG ;;
+    c) comments=$OPTARG ;;
+    i) uid=$OPTARG ;;
+    t) gid=$OPTARG ;;
+    A) set_variable ACTION apply;;
+    r) set_variable ACTION dryrun;;
+    h|?) usage ;; esac
+done
+
+if [ -z "$ACTION" ];then usage;fi
+
+if [ -z $username ] || [ -z $groupname ] || [ -z $dirname ] || [ -z $uid ] || [ -z $gid ];then usage;fi
+
+Checkexistance()
+{
+ucheck=`grep -w "$username" $wdir/passwd > /dev/null;echo $?`
+gcheck=`grep -w "$groupname" $wdir/group > /dev/null;echo $?`
+if [ $ucheck -lt 1 ] || [ $gcheck -lt 1 ];then echo "User or Group already exists...";return 2;fi
+}
+
+######################
+#Main Actions
+######################
+Backup()
+{
+echo "Backing up the existing files..."
+cp -p $wdir/passwd $wdir/passwd_$dat
+cp -p $wdir/shadow $wdir/shadow_$dat
+cp -p $wdir/group $wdir/group_$dat
+echo "Backup has been completed successfully!"
+
+}
+
+#Check user & group  existance before addition
+Useraddition()
+{
+Checkexistance
+if [ $? == 2 ];then exit;fi
+Backup
+echo "User and group addition in-progress... "
+echo "$username:x:$uid:$gid:$comments:$dirname:$shell" >> $wdir/passwd
+echo "$username:x:14370:::::" >> $wdir/shadow
+echo "$groupname:$uid:$username" >> $wdir/group
+sleep 1
+echo "User addition completed successfully"
+echo "Creation of User home directory "
+if [ ! -d $dirname ];then
+	mkdir -pm 755 $dirname
+	chown $username:$username $dirname
+	echo "Home directory created with right privilege"
+else
+	echo "$dirname directory already exists"
+fi	
+}
+
+#In case you want to try run
+dryrun()
+{
+Checkexistance
+if [ $? == 2 ];then exit;fi
+echo "dryrun action is choosen"
+echo "Following User and group will be added in below format "
+echo "$username:x:$uid:$gid:$comments:$dirname:$shell"
+echo "$username:x:14370:::::"
+echo "$groupname:$uid:$username"
+}
+
+case $ACTION in
+    apply) Useraddition ;;
+    dryrun) dryrun;;
+esac
+
+additiongroup(){
+echo "Secondary group addition to $username"
+grep -w "$1" $wdir/group > /dev/null
+if [ $? == 0 ];then
+        sed -i '/'"$1"':/ s/$/,'"$username"'/' $wdir/group
+fi
+}
+
+while :;do
+if [ $ACTION != "dryrun" ];then
+	        read -p "Want to addition group setup for the same user (y/n):" answer
+        case $answer in
+                y|Y)
+                       read -p "Enter addition group you want to add the user:" plusgroup
+                       additiongroup $plusgroup;;
+                n|N) exit;;
+        esac
+fi
+echo "Good Day!!!!"
+exit
+done
